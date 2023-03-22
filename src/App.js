@@ -1,10 +1,14 @@
 import React from "react";
+import FileUpload from "./FileUpload";
+import S3ListImg from "./S3ListImg";
 
 const App = () => {
+  const [fileChanged, setFileChanged] = React.useState(false);
   return (
-    <div>
-      <h1>Titre</h1>
-    </div>
+    <>
+      <FileUpload setFileChanged={setFileChanged} />
+      <S3ListImg fileChanged={fileChanged} setFileChanged={setFileChanged} />
+    </>
   );
 };
 
