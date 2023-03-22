@@ -61,7 +61,9 @@ const S3ListObjects = ({ fileChanged, setFileChanged }) => {
               src={`https://jonathanm98s3.s3.eu-west-3.amazonaws.com/${item.Key}`}
               alt={item.Key}
             />
-            <button onClick={handleDeleteImage(item.Key)}>Supprimer</button>
+            <button onClick={() => handleDeleteImage(item.Key)}>
+              Supprimer
+            </button>
           </div>
         ))
       )}
