@@ -30,8 +30,9 @@
       position: absolute;
       top: 0;
       right: 0;
-      background: black;
-      border: 1px solid white;
+      background: white;
+      border: 1px solid black;
+      border-radius: 10px;
       cursor: pointer;
       padding: 10px;
     }

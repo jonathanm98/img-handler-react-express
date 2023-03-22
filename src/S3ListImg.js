@@ -39,7 +39,7 @@ const S3ListObjects = ({ fileChanged, setFileChanged }) => {
   const handleDeleteImage = async (imageName) => {
     try {
       const response = await axios.delete(
-        `${process.env.REACT_APP_API_URL}${imageName}`
+        `${process.env.REACT_APP_API_URL}api/images/${imageName}`
       );
       console.log(response.data);
       setFileChanged(true);
