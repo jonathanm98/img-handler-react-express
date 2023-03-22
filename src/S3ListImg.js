@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import AWS from "aws-sdk";
+import axios from "axios";
 
 const S3ListObjects = ({ fileChanged, setFileChanged }) => {
   const [listObjects, setListObjects] = React.useState([]);
@@ -35,6 +36,18 @@ const S3ListObjects = ({ fileChanged, setFileChanged }) => {
     // eslint-disable-next-line
   }, [fileChanged]);
 
+  const handleDeleteImage = async (imageName) => {
+    try {
+      const response = await axios.delete(
+        `${process.env.REACT_APP_API_URL}${imageName}`
+      );
+      console.log(response.data);
+      setFileChanged(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="img-container">
       {listObjects.length === 0 ? (
@@ -48,6 +61,7 @@ const S3ListObjects = ({ fileChanged, setFileChanged }) => {
               src={`https://jonathanm98s3.s3.eu-west-3.amazonaws.com/${item.Key}`}
               alt={item.Key}
             />
+            <button onClick={handleDeleteImage(item.Key)}>Supprimer</button>
           </div>
         ))
       )}
