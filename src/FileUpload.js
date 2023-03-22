@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import axios from "axios";
 
 const FileUpload = ({ setFileChanged }) => {
   const [selectedFile, setSelectedFile] = useState(null);
+  const fileInputRef = useRef(null);
 
   const fileSelectedHandler = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -28,6 +29,7 @@ const FileUpload = ({ setFileChanged }) => {
       );
       console.log(response.data);
       setFileChanged(true);
+      fileInputRef.current.value = "";
     } catch (error) {
       console.error(error);
     }
@@ -41,6 +43,7 @@ const FileUpload = ({ setFileChanged }) => {
           type="file"
           accept=".png, .jpeg, .jpg"
           onChange={fileSelectedHandler}
+          ref={fileInputRef}
         />
         <button onClick={fileUploadHandler}>Télécharger</button>
       </div>
