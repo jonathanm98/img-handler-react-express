@@ -21,7 +21,7 @@ const FileUpload = ({ setFileChanged }) => {
     formData.append("image", selectedFile);
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/upload",
+        `${process.env.REACT_APP_API_URL}api/upload`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -41,7 +41,7 @@ const FileUpload = ({ setFileChanged }) => {
   const handleDeleteImage = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:3001/api/images/${imageName}`
+        `${process.env.REACT_APP_API_URL}${imageName}`
       );
       console.log(response.data);
     } catch (error) {
